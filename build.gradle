@@ -1,0 +1,27 @@
+apply plugin: 'scala'
+apply plugin: 'application'
+apply plugin: 'idea';
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'http://repository.excilys.com/content/groups/public'
+    }
+
+}
+
+dependencies {
+    testCompile 'com.excilys.ebi.gatling.highcharts:gatling-charts-highcharts:1.5.5'
+    compile 'org.scala-lang:scala-library:2.9.1'
+    compile 'org.scala-lang:scala-compiler:2.9.1'
+    ['jackson-core', 'jackson-annotations', 'jackson-databind'].each {
+        compile group: 'com.fasterxml.jackson.core', name: it, version: '2.2.3'
+    }
+    compile group:'com.fasterxml.jackson.module', name: 'jackson-module-scala_2.9.2', version: '2.3.3'
+}
+
+mainClassName = 'com.excilys.ebi.gatling.app.Gatling'
+run {
+    classpath = sourceSets.test.output + sourceSets.test.runtimeClasspath
+    args '-sbf', sourceSets.test.output.classesDir, '-s', 'basic.BasicExampleSimulation', '-rf', 'build/reports/gatling'
+}
