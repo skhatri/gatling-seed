@@ -1,3 +1,4 @@
+Archived: Load-Testing sample is also available here (https://github.com/skhatri/microservices-starter-kotlin/tree/master/load-testing)
 gatling-seed
 ============
 
